@@ -379,3 +379,23 @@ footer{
     margin-top:10px;
     padding:10px 15px;
 }
+
+/* =====================
+   SEARCH BAR
+===================== */
+
+#searchTask{
+    margin-bottom:15px;
+}
+
+/* =====================
+   DASHBOARD ANIMATION
+===================== */
+
+.dashboard-card{
+    transition:0.3s;
+}
+
+.dashboard-card:hover{
+    transform:scale(1.03);
+}

@@ -10,13 +10,13 @@
 
 <body>
 
-<header>
-    <h1>Task Expense Manager</h1>
+    <header>
+        <h1>Task Expense Manager</h1>
 
-    <button id="themeBtn">
-        Toggle Dark Mode
-    </button>
-</header>
+        <button id="themeBtn">
+            Toggle Dark Mode
+        </button>
+    </header>
 
     <nav>
         <ul>
@@ -32,6 +32,30 @@
         <section class="hero">
             <h2>Manage Tasks and Expenses Easily</h2>
             <p>Track productivity and spending in one place.</p>
+        </section>
+
+        <section class="dashboard">
+
+            <div class="dashboard-card">
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Total Expenses</h3>
+                <p id="dashboardExpense">₹0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Saved Tasks</h3>
+                <p id="savedTasks">0</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Saved Expenses</h3>
+                <p id="savedExpenses">0</p>
+            </div>
+
         </section>
 
         <section class="login-section">
@@ -65,6 +89,11 @@
         <section class="task-manager">
 
             <h2>Task Manager</h2>
+
+            <input
+                type="text"
+                id="searchTask"
+                placeholder="Search Tasks">
 
             <input
                 type="text"
@@ -108,17 +137,17 @@
 
         <section class="quote-section">
 
-    <h2>Motivational Quote</h2>
+            <h2>Motivational Quote</h2>
 
-    <p id="quoteText">
-        Loading quote...
-    </p>
+            <p id="quoteText">
+                Loading quote...
+            </p>
 
-    <button id="quoteBtn">
-        Get New Quote
-    </button>
+            <button id="quoteBtn">
+                Get New Quote
+            </button>
 
-</section>
+        </section>
 
     </main>
 

@@ -1,74 +1,60 @@
-/* ==========================
-   LOGIN VALIDATION
-========================== */
+/* LOGIN */
 
-const loginForm =
-document.getElementById("loginForm");
+const loginForm = document.getElementById("loginForm");
+const message = document.getElementById("message");
 
-const message =
-document.getElementById("message");
-
-function validateLogin(email,password){
-
-    if(email === "" || password === ""){
+function validateLogin(email, password) {
+    if (email === "" || password === "") {
         return "All fields are required";
     }
-
     return "Login Successful";
 }
 
-
-/* ==========================
-   ES6 CLASS
-========================== */
-
-class User{
-
-    constructor(email){
+class User {
+    constructor(email) {
         this.email = email;
     }
 
-    getGreeting(){
+    getGreeting() {
         return `Welcome ${this.email}`;
     }
-
 }
 
-loginForm.addEventListener("submit",(event)=>{
+loginForm.addEventListener("submit", (event) => {
 
     event.preventDefault();
 
-    const email =
-    document.getElementById("email").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    const password =
-    document.getElementById("password").value;
+    const result = validateLogin(email, password);
 
-    const result =
-    validateLogin(email,password);
-
-    if(result === "Login Successful"){
-
-        const user =
-        new User(email);
-
-        message.textContent =
-        user.getGreeting();
-
-    }
-    else{
-
-        message.textContent =
-        result;
-
+    if (result === "Login Successful") {
+        const user = new User(email);
+        message.textContent = user.getGreeting();
+    } else {
+        message.textContent = result;
     }
 
 });
 
 
-/* ==========================
-   TASK MANAGER
-========================== */
+/* DASHBOARD */
+
+const totalTasks =
+document.getElementById("totalTasks");
+
+const dashboardExpense =
+document.getElementById("dashboardExpense");
+
+const savedTasks =
+document.getElementById("savedTasks");
+
+const savedExpenses =
+document.getElementById("savedExpenses");
+
+
+/* TASK MANAGER */
 
 const taskInput =
 document.getElementById("taskInput");
@@ -79,12 +65,14 @@ document.getElementById("addTaskBtn");
 const taskList =
 document.getElementById("taskList");
 
-let tasks =
-JSON.parse(
-localStorage.getItem("tasks")
-) || [];
+const searchTask =
+document.getElementById("searchTask");
 
-function saveTasks(){
+let tasks =
+JSON.parse(localStorage.getItem("tasks"))
+|| [];
+
+function saveTasks() {
 
     localStorage.setItem(
         "tasks",
@@ -93,11 +81,11 @@ function saveTasks(){
 
 }
 
-function renderTasks(){
+function renderTasks(filteredTasks = tasks) {
 
     taskList.innerHTML = "";
 
-    tasks.forEach((task,index)=>{
+    filteredTasks.forEach((task, index) => {
 
         const li =
         document.createElement("li");
@@ -118,14 +106,16 @@ function renderTasks(){
 
     });
 
+    updateDashboard();
+
 }
 
-function addTask(){
+function addTask() {
 
     const taskName =
     taskInput.value.trim();
 
-    if(taskName === ""){
+    if (taskName === "") {
         return;
     }
 
@@ -141,9 +131,9 @@ function addTask(){
 
 }
 
-function deleteTask(index){
+function deleteTask(index) {
 
-    tasks.splice(index,1);
+    tasks.splice(index, 1);
 
     saveTasks();
 
@@ -156,10 +146,27 @@ addTaskBtn.addEventListener(
     addTask
 );
 
+searchTask.addEventListener(
+    "input",
+    () => {
 
-/* ==========================
-   EXPENSE MANAGER
-========================== */
+        const searchValue =
+        searchTask.value.toLowerCase();
+
+        const filteredTasks =
+        tasks.filter(task =>
+            task.name
+            .toLowerCase()
+            .includes(searchValue)
+        );
+
+        renderTasks(filteredTasks);
+
+    }
+);
+
+
+/* EXPENSE MANAGER */
 
 const expenseName =
 document.getElementById("expenseName");
@@ -181,7 +188,7 @@ JSON.parse(
 localStorage.getItem("expenses")
 ) || [];
 
-function saveExpenses(){
+function saveExpenses() {
 
     localStorage.setItem(
         "expenses",
@@ -190,13 +197,13 @@ function saveExpenses(){
 
 }
 
-function renderExpenses(){
+function renderExpenses() {
 
     expenseList.innerHTML = "";
 
     let total = 0;
 
-    expenses.forEach(expense=>{
+    expenses.forEach(expense => {
 
         total += expense.amount;
 
@@ -216,9 +223,11 @@ function renderExpenses(){
 
     totalExpense.textContent = total;
 
+    updateDashboard();
+
 }
 
-function addExpense(){
+function addExpense() {
 
     const name =
     expenseName.value.trim();
@@ -226,13 +235,13 @@ function addExpense(){
     const amount =
     Number(expenseAmount.value);
 
-    if(name === "" || amount <= 0){
+    if (name === "" || amount <= 0) {
         return;
     }
 
     expenses.push({
-        name:name,
-        amount:amount
+        name,
+        amount
     });
 
     saveExpenses();
@@ -250,9 +259,32 @@ addExpenseBtn.addEventListener(
 );
 
 
-/* ==========================
-   FETCH API - QUOTES
-========================== */
+/* DASHBOARD UPDATE */
+
+function updateDashboard() {
+
+    totalTasks.textContent =
+    tasks.length;
+
+    savedTasks.textContent =
+    tasks.length;
+
+    savedExpenses.textContent =
+    expenses.length;
+
+    let total = 0;
+
+    expenses.forEach(expense => {
+        total += expense.amount;
+    });
+
+    dashboardExpense.textContent =
+    `₹${total}`;
+
+}
+
+
+/* FETCH API */
 
 const quoteText =
 document.getElementById("quoteText");
@@ -260,9 +292,9 @@ document.getElementById("quoteText");
 const quoteBtn =
 document.getElementById("quoteBtn");
 
-async function fetchQuote(){
+async function fetchQuote() {
 
-    try{
+    try {
 
         const response =
         await fetch(
@@ -276,7 +308,7 @@ async function fetchQuote(){
         `"${data.quote}" - ${data.author}`;
 
     }
-    catch(error){
+    catch {
 
         quoteText.textContent =
         "Unable to load quote.";
@@ -291,47 +323,42 @@ quoteBtn.addEventListener(
 );
 
 
-/* ==========================
-   DARK MODE
-========================== */
+/* DARK MODE */
 
 const themeBtn =
 document.getElementById("themeBtn");
 
-function loadTheme(){
+function loadTheme() {
 
     const savedTheme =
     localStorage.getItem("theme");
 
-    if(savedTheme === "dark"){
-
+    if (savedTheme === "dark") {
         document.body.classList.add(
             "dark-mode"
         );
-
     }
 
 }
 
-function toggleTheme(){
+function toggleTheme() {
 
     document.body.classList.toggle(
         "dark-mode"
     );
 
-    if(
+    if (
         document.body.classList.contains(
             "dark-mode"
         )
-    ){
+    ) {
 
         localStorage.setItem(
             "theme",
             "dark"
         );
 
-    }
-    else{
+    } else {
 
         localStorage.setItem(
             "theme",
@@ -348,11 +375,10 @@ themeBtn.addEventListener(
 );
 
 
-/* ==========================
-   INITIAL LOAD
-========================== */
+/* INITIAL LOAD */
 
 renderTasks();
 renderExpenses();
 fetchQuote();
 loadTheme();
+updateDashboard();
