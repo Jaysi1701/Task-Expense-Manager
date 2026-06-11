@@ -1,10 +1,12 @@
+/* LOGIN */
+
 const loginForm =
 document.getElementById("loginForm");
 
 const message =
 document.getElementById("message");
 
-function validateLogin(email, password){
+function validateLogin(email,password){
 
     if(email === "" || password === ""){
         return "All fields are required";
@@ -13,7 +15,7 @@ function validateLogin(email, password){
     return "Login Successful";
 }
 
-loginForm.addEventListener("submit", (event)=>{
+loginForm.addEventListener("submit",(event)=>{
 
     event.preventDefault();
 
@@ -23,9 +25,163 @@ loginForm.addEventListener("submit", (event)=>{
     const password =
     document.getElementById("password").value;
 
-    const result =
-    validateLogin(email, password);
-
-    message.textContent = result;
+    message.textContent =
+    validateLogin(email,password);
 
 });
+
+
+/* TASK MANAGER */
+
+const taskInput =
+document.getElementById("taskInput");
+
+const addTaskBtn =
+document.getElementById("addTaskBtn");
+
+const taskList =
+document.getElementById("taskList");
+
+let tasks = [];
+
+function renderTasks(){
+
+    taskList.innerHTML = "";
+
+    tasks.forEach((task,index)=>{
+
+        const li =
+        document.createElement("li");
+
+        li.classList.add("task-item");
+
+        li.innerHTML = `
+            <span>${task.name}</span>
+            <button
+            class="delete-btn"
+            onclick="deleteTask(${index})">
+            Delete
+            </button>
+        `;
+
+        taskList.appendChild(li);
+
+    });
+
+}
+
+function addTask(){
+
+    const taskName =
+    taskInput.value.trim();
+
+    if(taskName === ""){
+        return;
+    }
+
+    const task = {
+        name: taskName
+    };
+
+    tasks.push(task);
+
+    taskInput.value = "";
+
+    renderTasks();
+
+}
+
+function deleteTask(index){
+
+    tasks.splice(index,1);
+
+    renderTasks();
+
+}
+
+addTaskBtn.addEventListener(
+    "click",
+    addTask
+);
+
+
+/* EXPENSE MANAGER */
+
+const expenseName =
+document.getElementById("expenseName");
+
+const expenseAmount =
+document.getElementById("expenseAmount");
+
+const addExpenseBtn =
+document.getElementById("addExpenseBtn");
+
+const expenseList =
+document.getElementById("expenseList");
+
+const totalExpense =
+document.getElementById("totalExpense");
+
+let expenses = [];
+
+function renderExpenses(){
+
+    expenseList.innerHTML = "";
+
+    let total = 0;
+
+    expenses.forEach(expense => {
+
+        total += expense.amount;
+
+        const li =
+        document.createElement("li");
+
+        li.classList.add("expense-item");
+
+        li.innerHTML = `
+            <span>
+                ${expense.name}
+            </span>
+
+            <span>
+                ₹${expense.amount}
+            </span>
+        `;
+
+        expenseList.appendChild(li);
+
+    });
+
+    totalExpense.textContent = total;
+
+}
+
+function addExpense(){
+
+    const name =
+    expenseName.value.trim();
+
+    const amount =
+    Number(expenseAmount.value);
+
+    if(name === "" || amount <= 0){
+        return;
+    }
+
+    expenses.push({
+        name:name,
+        amount:amount
+    });
+
+    expenseName.value = "";
+    expenseAmount.value = "";
+
+    renderExpenses();
+
+}
+
+addExpenseBtn.addEventListener(
+    "click",
+    addExpense
+);

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Expense Manager</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -24,88 +23,86 @@
         </ul>
     </nav>
 
- <main>
+    <main>
 
-    <section class="hero">
-        <h2>Manage Tasks and Expenses Easily</h2>
+        <section class="hero">
+            <h2>Manage Tasks and Expenses Easily</h2>
+            <p>Track productivity and spending in one place.</p>
+        </section>
 
-        <p>
-            Track productivity and spending in one place.
-        </p>
-    </section>
+        <section class="login-section">
 
-    <section class="login-section">
+            <h2>Login</h2>
 
-        <h2>Login</h2>
+            <form id="loginForm">
 
-        <form id="loginForm">
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email"
+                    required>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+        </section>
+
+        <section class="task-manager">
+
+            <h2>Task Manager</h2>
 
             <input
-                type="email"
-                id="email"
-                placeholder="Enter Email"
-                required>
+                type="text"
+                id="taskInput"
+                placeholder="Enter Task">
 
-            <input
-                type="password"
-                id="password"
-                placeholder="Enter Password"
-                required>
-
-            <button type="submit">
-                Login
+            <button id="addTaskBtn">
+                Add Task
             </button>
 
-        </form>
+            <ul id="taskList"></ul>
 
-        <p id="message"></p>
+        </section>
 
-    </section>
+        <section class="expense-manager">
 
-    <section class="features">
+            <h2>Expense Manager</h2>
 
-        <div class="card">
-            <h3>Task Tracking</h3>
-            <p>Create and manage daily tasks.</p>
-        </div>
+            <input
+                type="text"
+                id="expenseName"
+                placeholder="Expense Name">
 
-        <div class="card">
-            <h3>Expense Tracking</h3>
-            <p>Monitor your daily expenses.</p>
-        </div>
+            <input
+                type="number"
+                id="expenseAmount"
+                placeholder="Amount">
 
-        <div class="card">
-            <h3>Reports</h3>
-            <p>Analyze productivity and spending.</p>
-        </div>
+            <button id="addExpenseBtn">
+                Add Expense
+            </button>
 
-    </section>
+            <h3>
+                Total Expenses:
+                ₹<span id="totalExpense">0</span>
+            </h3>
 
-    <section class="dashboard">
+            <ul id="expenseList"></ul>
 
-    <div class="dashboard-card">
-        <h3>Total Tasks</h3>
-        <p>25</p>
-    </div>
+        </section>
 
-    <div class="dashboard-card">
-        <h3>Completed Tasks</h3>
-        <p>18</p>
-    </div>
-
-    <div class="dashboard-card">
-        <h3>Total Expenses</h3>
-        <p>₹12,500</p>
-    </div>
-
-    <div class="dashboard-card">
-        <h3>Monthly Budget</h3>
-        <p>₹20,000</p>
-    </div>
-
-</section>
-
-</main>
+    </main>
 
     <footer>
         <p>© 2026 Task Expense Manager</p>
