@@ -5,7 +5,7 @@
 }
 
 body{
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     text-align:center;
 }
 
@@ -13,6 +13,23 @@ header{
     background:#2c3e50;
     color:white;
     padding:20px;
+}
+
+nav{
+    background:#34495e;
+    padding:15px;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
 }
 
 .hero{
@@ -36,6 +53,17 @@ button{
     border-radius:5px;
 }
 
-button:hover{
-    opacity:0.9;
+.about{
+    padding:40px;
+}
+
+.about h2{
+    margin-bottom:15px;
+}
+
+footer{
+    background:#2c3e50;
+    color:white;
+    padding:20px;
+    margin-top:40px;
 }
