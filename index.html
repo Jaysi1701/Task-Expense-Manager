@@ -27,29 +27,40 @@
     <main>
 
         <section class="hero">
-
             <h2>Manage Tasks and Expenses Easily</h2>
 
             <p>
-                Track your productivity and daily expenses in one place.
+                Track productivity and spending in one place.
             </p>
-
-            <button id="startBtn">
-                Get Started
-            </button>
-
         </section>
 
-        <article class="about">
+        <section class="login-section">
 
-            <h2>About This Project</h2>
+            <h2>Login</h2>
 
-            <p>
-                This application helps users organize tasks,
-                monitor expenses, and improve productivity.
-            </p>
+            <form id="loginForm">
 
-        </article>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter Email"
+                    required>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter Password"
+                    required>
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+            <p id="message"></p>
+
+        </section>
 
     </main>
 

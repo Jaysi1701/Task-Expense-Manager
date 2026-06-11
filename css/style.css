@@ -33,32 +33,43 @@ nav a{
 }
 
 .hero{
-    padding:80px 20px;
+    padding:50px 20px;
 }
 
-.hero h2{
+.login-section{
+    width:350px;
+    margin:20px auto;
+    padding:25px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+.login-section h2{
     margin-bottom:20px;
 }
 
-.hero p{
-    margin-bottom:20px;
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
 }
 
 button{
-    padding:12px 25px;
+    width:100%;
+    padding:12px;
     border:none;
     background:#3498db;
     color:white;
     cursor:pointer;
-    border-radius:5px;
 }
 
-.about{
-    padding:40px;
+button:hover{
+    opacity:0.9;
 }
 
-.about h2{
-    margin-bottom:15px;
+#message{
+    margin-top:15px;
+    font-weight:bold;
 }
 
 footer{
