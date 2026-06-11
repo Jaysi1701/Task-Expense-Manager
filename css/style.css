@@ -48,6 +48,31 @@ nav a{
     margin-bottom:20px;
 }
 
+.features{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    padding:40px;
+    flex-wrap:wrap;
+}
+
+.card{
+    width:250px;
+    padding:25px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    margin-bottom:15px;
+}
+
 input{
     width:100%;
     padding:12px;
