@@ -1,4 +1,6 @@
-/* LOGIN */
+/* ==========================
+   LOGIN
+========================== */
 
 const loginForm =
 document.getElementById("loginForm");
@@ -31,7 +33,9 @@ loginForm.addEventListener("submit",(event)=>{
 });
 
 
-/* TASK MANAGER */
+/* ==========================
+   TASK MANAGER
+========================== */
 
 const taskInput =
 document.getElementById("taskInput");
@@ -42,7 +46,19 @@ document.getElementById("addTaskBtn");
 const taskList =
 document.getElementById("taskList");
 
-let tasks = [];
+let tasks =
+JSON.parse(
+localStorage.getItem("tasks")
+) || [];
+
+function saveTasks(){
+
+    localStorage.setItem(
+        "tasks",
+        JSON.stringify(tasks)
+    );
+
+}
 
 function renderTasks(){
 
@@ -57,6 +73,7 @@ function renderTasks(){
 
         li.innerHTML = `
             <span>${task.name}</span>
+
             <button
             class="delete-btn"
             onclick="deleteTask(${index})">
@@ -79,11 +96,11 @@ function addTask(){
         return;
     }
 
-    const task = {
+    tasks.push({
         name: taskName
-    };
+    });
 
-    tasks.push(task);
+    saveTasks();
 
     taskInput.value = "";
 
@@ -95,6 +112,8 @@ function deleteTask(index){
 
     tasks.splice(index,1);
 
+    saveTasks();
+
     renderTasks();
 
 }
@@ -105,7 +124,9 @@ addTaskBtn.addEventListener(
 );
 
 
-/* EXPENSE MANAGER */
+/* ==========================
+   EXPENSE MANAGER
+========================== */
 
 const expenseName =
 document.getElementById("expenseName");
@@ -122,7 +143,19 @@ document.getElementById("expenseList");
 const totalExpense =
 document.getElementById("totalExpense");
 
-let expenses = [];
+let expenses =
+JSON.parse(
+localStorage.getItem("expenses")
+) || [];
+
+function saveExpenses(){
+
+    localStorage.setItem(
+        "expenses",
+        JSON.stringify(expenses)
+    );
+
+}
 
 function renderExpenses(){
 
@@ -130,7 +163,7 @@ function renderExpenses(){
 
     let total = 0;
 
-    expenses.forEach(expense => {
+    expenses.forEach(expense=>{
 
         total += expense.amount;
 
@@ -140,13 +173,8 @@ function renderExpenses(){
         li.classList.add("expense-item");
 
         li.innerHTML = `
-            <span>
-                ${expense.name}
-            </span>
-
-            <span>
-                ₹${expense.amount}
-            </span>
+            <span>${expense.name}</span>
+            <span>₹${expense.amount}</span>
         `;
 
         expenseList.appendChild(li);
@@ -174,6 +202,8 @@ function addExpense(){
         amount:amount
     });
 
+    saveExpenses();
+
     expenseName.value = "";
     expenseAmount.value = "";
 
@@ -185,3 +215,11 @@ addExpenseBtn.addEventListener(
     "click",
     addExpense
 );
+
+
+/* ==========================
+   INITIAL LOAD
+========================== */
+
+renderTasks();
+renderExpenses();
