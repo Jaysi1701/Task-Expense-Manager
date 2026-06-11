@@ -226,6 +226,29 @@ button:hover{
     background:#f9f9f9;
 }
 
+/* =====================
+   QUOTE SECTION
+===================== */
+
+.quote-section{
+    width:500px;
+    margin:40px auto;
+    padding:20px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    background:white;
+}
+
+.quote-section h2{
+    margin-bottom:20px;
+}
+
+#quoteText{
+    margin:20px 0;
+    font-style:italic;
+    font-size:18px;
+}
+
 /* FOOTER */
 
 footer{

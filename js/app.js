@@ -223,3 +223,41 @@ addExpenseBtn.addEventListener(
 
 renderTasks();
 renderExpenses();
+
+const quoteText =
+document.getElementById("quoteText");
+
+const quoteBtn =
+document.getElementById("quoteBtn");
+
+async function fetchQuote(){
+
+    try{
+
+        const response =
+        await fetch(
+            "https://dummyjson.com/quotes/random"
+        );
+
+        const data =
+        await response.json();
+
+        quoteText.textContent =
+        `"${data.quote}" - ${data.author}`;
+
+    }
+    catch(error){
+
+        quoteText.textContent =
+        "Unable to load quote.";
+
+    }
+
+}
+
+quoteBtn.addEventListener(
+    "click",
+    fetchQuote
+);
+
+fetchQuote();
