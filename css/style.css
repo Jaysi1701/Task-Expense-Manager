@@ -335,3 +335,47 @@ footer{
         gap:10px;
     }
 }
+
+/* =====================
+   DARK MODE
+===================== */
+
+.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+.dark-mode .login-section,
+.dark-mode .task-manager,
+.dark-mode .expense-manager,
+.dark-mode .quote-section,
+.dark-mode .card,
+.dark-mode .dashboard-card{
+    background:#1f1f1f;
+    color:white;
+    border-color:#444;
+}
+
+.dark-mode input{
+    background:#2c2c2c;
+    color:white;
+    border:1px solid #555;
+}
+
+.dark-mode nav{
+    background:#1b2838;
+}
+
+.dark-mode header{
+    background:#111827;
+}
+
+.dark-mode footer{
+    background:#111827;
+}
+
+#themeBtn{
+    width:auto;
+    margin-top:10px;
+    padding:10px 15px;
+}

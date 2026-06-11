@@ -1,5 +1,5 @@
 /* ==========================
-   LOGIN
+   LOGIN VALIDATION
 ========================== */
 
 const loginForm =
@@ -17,6 +17,23 @@ function validateLogin(email,password){
     return "Login Successful";
 }
 
+
+/* ==========================
+   ES6 CLASS
+========================== */
+
+class User{
+
+    constructor(email){
+        this.email = email;
+    }
+
+    getGreeting(){
+        return `Welcome ${this.email}`;
+    }
+
+}
+
 loginForm.addEventListener("submit",(event)=>{
 
     event.preventDefault();
@@ -27,8 +44,24 @@ loginForm.addEventListener("submit",(event)=>{
     const password =
     document.getElementById("password").value;
 
-    message.textContent =
+    const result =
     validateLogin(email,password);
+
+    if(result === "Login Successful"){
+
+        const user =
+        new User(email);
+
+        message.textContent =
+        user.getGreeting();
+
+    }
+    else{
+
+        message.textContent =
+        result;
+
+    }
 
 });
 
@@ -218,11 +251,8 @@ addExpenseBtn.addEventListener(
 
 
 /* ==========================
-   INITIAL LOAD
+   FETCH API - QUOTES
 ========================== */
-
-renderTasks();
-renderExpenses();
 
 const quoteText =
 document.getElementById("quoteText");
@@ -260,4 +290,69 @@ quoteBtn.addEventListener(
     fetchQuote
 );
 
+
+/* ==========================
+   DARK MODE
+========================== */
+
+const themeBtn =
+document.getElementById("themeBtn");
+
+function loadTheme(){
+
+    const savedTheme =
+    localStorage.getItem("theme");
+
+    if(savedTheme === "dark"){
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+
+    }
+
+}
+
+function toggleTheme(){
+
+    document.body.classList.toggle(
+        "dark-mode"
+    );
+
+    if(
+        document.body.classList.contains(
+            "dark-mode"
+        )
+    ){
+
+        localStorage.setItem(
+            "theme",
+            "dark"
+        );
+
+    }
+    else{
+
+        localStorage.setItem(
+            "theme",
+            "light"
+        );
+
+    }
+
+}
+
+themeBtn.addEventListener(
+    "click",
+    toggleTheme
+);
+
+
+/* ==========================
+   INITIAL LOAD
+========================== */
+
+renderTasks();
+renderExpenses();
 fetchQuote();
+loadTheme();
